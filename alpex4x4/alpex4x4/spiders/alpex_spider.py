@@ -31,9 +31,9 @@ class AlpexSpider(scrapy.Spider):
         yield {
             'name': response.css('span.product-page-product-name::text').get(),
             'price': response.css('span.product-page-price::text').get() + response.css('span.postfix::text').get(),
-            'availability': response.css('td.param-value.productstock-param>span::text').getall()[-1].strip(),
+            'availability': response.css('td.param-value.productstock-param > span::text').getall()[-1].strip(),
             'manufacturer': response.css('td.param-value.manufacturer-param img::attr(alt)').get(),
             'model': response.css('td.param-value.productsku-param > span::text').get(),
-            'parameteres': response.css('td.param-value.product-short-description strong::text').getall(),
+            'parameters': response.css('td.param-value.product-short-description strong::text').re(r'[\w\d]{1}.*'),
             'video_url': response.css('div.embed-responsive.embed-responsive-4by3 iframe::attr(src)').re(r'www[\.\w\d/-]+')
         }
