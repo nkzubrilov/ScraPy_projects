@@ -37,4 +37,3 @@ class AlpexSpider(scrapy.Spider):
             'parameters': response.css('td.param-value.product-short-description strong::text').re(r'[\w\d]{1}.*'),
             'video_url': response.css('div.embed-responsive.embed-responsive-4by3 iframe::attr(src)').re(r'www[\.\w\d/-]+')
         }
-
